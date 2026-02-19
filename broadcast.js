@@ -22,6 +22,12 @@ async function runBroadcast() {
     const rawData = fs.readFileSync('./Voters.json');
     const dptList = JSON.parse(rawData);
 
+    // Load email template
+    let emailTemplate = '';
+    if (fs.existsSync('./email-template.html')) {
+      emailTemplate = fs.readFileSync('./email-template.html', 'utf8');
+    }
+
     console.log(`📡 Memulai broadcast untuk ${dptList.length} mahasiswa HME...`);
 
     // Konfigurasi SMTP (Gunakan App Password 16 digit kamu)
@@ -60,11 +66,7 @@ async function runBroadcast() {
         });
 
         // 3. Kirim Email
-        await transporter.sendMail({
-          from: `"Panitia Pemira HME ITB" <${process.env.EMAIL_USER}>`,
-          to: student.email,
-          subject: '[PENTING] Token Voting Pemira HME ITB 2026',
-          html: `
+        let emailHtml = emailTemplate || `
             <div style="font-family: Arial, sans-serif; background:#f6f8fb; padding:24px;">
               <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.08)">
                 <div style="background:#0b5ed7; color:#fff; padding:20px 24px;">
@@ -89,7 +91,18 @@ async function runBroadcast() {
                 </div>
               </div>
             </div>
-          `
+          `;
+        
+        // Replace template variables
+        emailHtml = emailHtml
+          .replace(/{{NAMA_PENERIMA}}/g, student.name)
+          .replace(/{{TOKEN}}/g, token);
+
+        await transporter.sendMail({
+          from: `"Panitia Pemira HME ITB" <${process.env.EMAIL_USER}>`,
+          to: student.email,
+          subject: '[PENTING] Token Voting Pemira HME ITB 2026',
+          html: emailHtml
         });
 
         console.log(`✅ Sukses: ${student.nim}`);
