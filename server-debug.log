@@ -1,0 +1,39 @@
+[2026-02-19T17:34:38.341Z] === SERVER STARTING ===
+[2026-02-19T17:34:38.397Z] Environment loaded
+[2026-02-19T17:34:38.532Z] Creating database pool...
+[2026-02-19T17:34:38.535Z] Database client created
+[2026-02-19T17:34:38.541Z] Adding JSON parser...
+[2026-02-19T17:34:38.542Z] JSON parser added
+[2026-02-19T17:34:38.542Z] [STARTUP] API_TOKEN loaded: YES (value: LOCAL_DEV_TOKEN)
+[2026-02-19T17:34:38.543Z] [STARTUP] All environment variables: ["API_TOKEN"]
+[2026-02-19T17:34:38.576Z] Backend running on http://localhost:5000
+[2026-02-19T17:38:17.791Z] === SERVER STARTING ===
+[2026-02-19T17:38:17.797Z] Environment loaded
+[2026-02-19T17:38:17.885Z] Creating database pool...
+[2026-02-19T17:38:17.889Z] Database client created
+[2026-02-19T17:38:17.891Z] Adding JSON parser...
+[2026-02-19T17:38:17.892Z] JSON parser added
+[2026-02-19T17:38:17.892Z] [STARTUP] API_TOKEN loaded: YES (value: LOCAL_DEV_TOKEN)
+[2026-02-19T17:38:17.894Z] [STARTUP] All environment variables: ["API_TOKEN"]
+[2026-02-19T17:38:17.899Z] Backend running on http://localhost:5000
+[2026-02-19T17:38:32.549Z] [POST] /api/test
+[2026-02-19T17:38:32.550Z] [API_TEST] Request received
+[2026-02-19T17:38:32.551Z] [API_TEST] Body: {"username":"test","pass":"test123","token":"LOCAL_DEV_TOKEN"}
+[2026-02-19T17:38:38.638Z] [POST] /api/login
+[2026-02-19T17:38:38.639Z] [REQUEST_BODY] {"username":"13223010","pass":"QZ1VNS","token":"LOCAL_DEV_TOKEN"}
+[2026-02-19T17:38:38.641Z] [API_LOGIN] Received request
+[2026-02-19T17:38:38.641Z] [API_LOGIN] Body: {"username":"13223010","pass":"QZ1VNS","token":"LOCAL_DEV_TOKEN"}
+[2026-02-19T17:38:38.642Z] [API_LOGIN] Has token in body: true
+[2026-02-19T17:38:38.643Z] [API_LOGIN] Attempting to query database
+[2026-02-19T17:38:38.643Z] Attempting to find voter with NIM: 13223010
+[2026-02-19T17:38:39.916Z] [API_LOGIN] Caught error in try block
+[2026-02-19T17:38:39.917Z] [API_LOGIN] Error message: 
+Invalid `prisma.voter.findFirst()` invocation in
+C:\Users\lapto\OneDrive\Documents\Pemira\Backend-PEMIRA-HME-ITB-2026-main\server.js:239:38
+
+  236 try {
+  237   log('[API_LOGIN] Attempting to query database');
+  238   log('Attempting to find voter with NIM:', username);
+→ 239   const voter = await prisma.voter.findFirst(
+Too many database connections opened: This cluster has reached its Request Unit limit for the month and is now disabled. You can increase your resource limits to continue using this cluster.
+[2026-02-19T17:38:39.917Z] [API_LOGIN] Full error: {"code":"P2037","meta":{"modelName":"Voter","driverAdapterError":{"name":"DriverAdapterError","cause":{"originalCode":"53300","originalMessage":"This cluster has reached its Request Unit limit for the month and is now disabled. You can increase your resource limits to continue using this cluster.","kind":"TooManyConnections","cause":"This cluster has reached its Request Unit limit for the month and is now disabled. You can increase your resource limits to continue using this cluster."}}},"clientVersion":"7.3.0","name":"PrismaClientKnownRequestError"}
