@@ -325,7 +325,7 @@ app.post('/api/is_vote_specific', async (req, res) => {
 
     if (!voter) return res.json({ data: "false" });
 
-    if (category === 'ketua') {
+    if (category === 'kahim') {
       return res.json({ data: voter.isVoteCakahim ? "true" : "false" });
     }
 
@@ -351,8 +351,8 @@ app.post('/api/vote', async (req, res) => {
       return res.status(404).json({ message: "Voter tidak ditemukan" });
     }
 
-    if (category === 'ketua' && voter.isVoteCakahim) {
-      return res.status(403).json({ message: "Anda sudah memilih Ketua Himpunan!" });
+    if (category === 'kahim' && voter.isVoteCakahim) {
+      return res.status(403).json({ message: "Anda sudah memilih Kahim!" });
     }
 
     if (category === 'senator' && voter.isVoteCasenat) {
@@ -360,7 +360,7 @@ app.post('/api/vote', async (req, res) => {
     }
 
     const now = new Date();
-    const updateData = category === 'ketua'
+    const updateData = category === 'kahim'
       ? { kahimChoice: pilihan, isVoteCakahim: true }
       : { senatorChoice: pilihan, isVoteCasenat: true };
 
