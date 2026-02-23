@@ -6,5 +6,4 @@ module.exports = defineConfig({
   datasource: {
     url: process.env.DATABASE_URL,
   },
-  schema: './generated/prisma/schema.prisma',
 });

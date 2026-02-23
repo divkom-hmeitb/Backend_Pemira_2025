@@ -234,3 +234,13 @@ Too many database connections opened: This cluster has reached its Request Unit 
 [2026-02-23T03:51:39.260Z] [STARTUP] All environment variables: ["API_TOKEN"]
 [2026-02-23T03:51:39.265Z] Backend running on http://localhost:5000
 [2026-02-23T03:52:41.171Z] [GET] /api/live_count
+[2026-02-23T04:16:35.104Z] === SERVER STARTING ===
+[2026-02-23T04:16:35.110Z] Environment loaded
+[2026-02-23T04:16:35.260Z] Creating database pool...
+[2026-02-23T04:16:35.283Z] Database client created
+[2026-02-23T04:16:35.284Z] Adding JSON parser...
+[2026-02-23T04:16:35.285Z] JSON parser added
+[2026-02-23T04:16:35.286Z] [STARTUP] API_TOKEN loaded: YES (value: LOCAL_DEV_TOKEN)
+[2026-02-23T04:16:35.288Z] [STARTUP] All environment variables: ["API_TOKEN"]
+[2026-02-23T04:16:35.294Z] Backend running on http://localhost:5000
+[2026-02-23T04:16:57.083Z] [GET] /api/live_count
