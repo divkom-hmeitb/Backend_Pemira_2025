@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Voter {
-  id                Int      @id @default(autoincrement())
+  id                String   @id @default(uuid())
   nim               String   @unique
   name              String
   token             String   @unique
