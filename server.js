@@ -80,6 +80,15 @@ const API_TOKEN = process.env.API_TOKEN || process.env.NEXT_PUBLIC_API_TOKEN;
 log('[STARTUP] API_TOKEN loaded:', API_TOKEN ? 'YES' : 'NO', API_TOKEN ? `(value: ${API_TOKEN})` : '');
 log('[STARTUP] All environment variables:', Object.keys(process.env).filter(k => k.includes('TOKEN') || k.includes('API')));
 
+// Root route handler
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok',
+    message: 'Pemira API Backend is running',
+    version: '1.0.0'
+  });
+});
+
 const isApiTokenValid = (req) => {
   if (!API_TOKEN) return true;
   const isValid = req.body && req.body.token === API_TOKEN;
